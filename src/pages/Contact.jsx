@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 // Ejercicio 2: formulario de contacto con validación en tiempo real.
+// Se gestionan estados para los datos, errores de validación y estado de envío.
 function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -8,11 +9,14 @@ function Contact() {
     message: ''
   })
 
+  // Mensajes de error mostrados al usuario.
   const [errors, setErrors] = useState({})
+  // Controla qué campos han sido pulsados o visitados.
   const [touched, setTouched] = useState({})
+  // Indica si el formulario se envió correctamente.
   const [submitted, setSubmitted] = useState(false)
 
-  // Valida los campos del formulario y devuelve los errores encontrados.
+  // Función encargada de validar las reglas de negocio de los campos.
   const validate = (data) => {
     const newErrors = {}
 
@@ -35,7 +39,7 @@ function Contact() {
     return newErrors
   }
 
-  // Actualiza el estado del formulario cada vez que cambia un input.
+  // Actualiza los datos y recalcula errores al escribir.
   const handleChange = (event) => {
     const { name, value } = event.target
 
@@ -48,7 +52,7 @@ function Contact() {
     setErrors(validate(updatedFormData))
   }
 
-  // Marca un campo como visitado cuando pierde el foco.
+  // Marca un campo como visitado cuando pierde el foco (blur).
   const handleBlur = (event) => {
     const { name } = event.target
 
@@ -60,13 +64,14 @@ function Contact() {
     setErrors(validate(formData))
   }
 
-  // Evita el envío si existen errores y muestra confirmación si es válido.
+  // Valida completamente el formulario antes del envío final.
   const handleSubmit = (event) => {
     event.preventDefault()
 
     const validationErrors = validate(formData)
     setErrors(validationErrors)
 
+    // Al enviar, se consideran todos los campos como visitados.
     setTouched({
       name: true,
       email: true,
@@ -76,6 +81,7 @@ function Contact() {
     if (Object.keys(validationErrors).length === 0) {
       setSubmitted(true)
 
+      // Reinicio del formulario.
       setFormData({
         name: '',
         email: '',
@@ -97,6 +103,7 @@ function Contact() {
         Completa el formulario. Los errores se mostrarán en tiempo real sin recargar la página.
       </p>
 
+      {/* Formulario que delega la validación a la lógica de JS */}
       <form className="contact-form" onSubmit={handleSubmit} noValidate>
         <div className="form-group">
           <label htmlFor="name">Nombre</label>

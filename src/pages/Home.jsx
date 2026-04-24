@@ -1,3 +1,7 @@
+/**
+ * Página de bienvenida "Home".
+ * Resume el propósito técnico del proyecto de alternancia.
+ */
 function Home() {
   return (
     <section className="page hero">

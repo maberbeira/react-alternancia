@@ -1,6 +1,10 @@
 import Gallery from '../components/Gallery'
 import Blog from '../components/Blog'
 
+/**
+ * Página de servicios que integra sub-componentes interactivos.
+ * Contiene la galería musical y el sistema de blog dinámico.
+ */
 function Services() {
   return (
     <section className="page">

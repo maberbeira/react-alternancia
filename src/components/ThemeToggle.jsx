@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 function ThemeToggle() {
   const [darkMode, setDarkMode] = useState(false)
 
-  // Añade o elimina una clase global en el body para cambiar el tema visual.
+  // Gestiona el cambio de tema añadiendo/quitando una clase en el elemento body.
+  // Esto permite que los estilos globales de CSS de adapten al tema elegido.
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add('dark-mode')
@@ -15,6 +16,7 @@ function ThemeToggle() {
 
   return (
     <button className="theme-button" onClick={() => setDarkMode(!darkMode)}>
+      {/* Texto dinámico que cambia según el estado actual */}
       {darkMode ? 'Modo claro' : 'Modo oscuro'}
     </button>
   )

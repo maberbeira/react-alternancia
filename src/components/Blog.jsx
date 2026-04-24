@@ -1,17 +1,21 @@
 import { useState } from 'react'
 import PostCard from './PostCard.jsx'
 
-// Ejercicio 4: sistema de publicaciones dinámicas.
+// Ejercicio 4: sistema de publicaciones dinámicas (CRUD).
+// Permite gestionar una lista de posts en el estado local del componente.
 function Blog() {
+  // Estado para capturar los datos actuales del formulario de entrada.
   const [formData, setFormData] = useState({
     title: '',
     description: ''
   })
 
+  // Lista de publicaciones almacenadas.
   const [posts, setPosts] = useState([])
+  // ID de la publicación que se está editando en este momento.
   const [editingId, setEditingId] = useState(null)
 
-  // Actualiza el estado del formulario del blog.
+  // Sincroniza los cambios de los inputs con el estado del formulario.
   const handleChange = (event) => {
     const { name, value } = event.target
 
@@ -21,16 +25,18 @@ function Blog() {
     })
   }
 
-  // Crea una publicación nueva o actualiza una existente.
+  // Procesa el envío del formulario para crear o actualizar un post.
   const handleSubmit = (event) => {
     event.preventDefault()
 
+    // Validación para asegurar que hay contenido antes de guardar.
     if (!formData.title.trim() || !formData.description.trim()) {
       alert('Debes completar título y descripción')
       return
     }
 
     if (editingId) {
+      // Actualización de post existente.
       const updatedPosts = posts.map((post) =>
         post.id === editingId
           ? {
@@ -44,6 +50,7 @@ function Blog() {
       setPosts(updatedPosts)
       setEditingId(null)
     } else {
+      // Creación de post nuevo con ID único.
       const newPost = {
         id: Date.now(),
         title: formData.title,
@@ -54,13 +61,14 @@ function Blog() {
       setPosts([newPost, ...posts])
     }
 
+    // Limpieza de campos tras la operación.
     setFormData({
       title: '',
       description: ''
     })
   }
 
-  // Carga los datos de una publicación en el formulario para editarla.
+  // Carga los datos de un post en los campos de edición.
   const editPost = (post) => {
     setFormData({
       title: post.title,
@@ -70,7 +78,7 @@ function Blog() {
     setEditingId(post.id)
   }
 
-  // Elimina una publicación usando su identificador.
+  // Elimina un post de la lista basándose en su ID.
   const deletePost = (id) => {
     const filteredPosts = posts.filter((post) => post.id !== id)
     setPosts(filteredPosts)
@@ -84,7 +92,7 @@ function Blog() {
     }
   }
 
-  // Cambia el estado destacado de una publicación.
+  // Cambia el estado 'destacado' de una publicación específica.
   const toggleFeatured = (id) => {
     const updatedPosts = posts.map((post) =>
       post.id === id
@@ -95,7 +103,7 @@ function Blog() {
     setPosts(updatedPosts)
   }
 
-  // Cancela la edición actual.
+  // Cancela la edición actual sin guardar cambios.
   const cancelEdit = () => {
     setEditingId(null)
     setFormData({

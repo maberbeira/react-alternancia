@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
+import ThemeToggle from './components/ThemeToggle'
 import Home from './pages/Home'
 import Services from './pages/Services'
 import Contact from './pages/Contact'
@@ -9,6 +10,10 @@ function App() {
   return (
     <div>
       <Navbar />
+
+      <div className="theme-container">
+        <ThemeToggle />
+      </div>
 
       <main className="main-content">
         <Routes>

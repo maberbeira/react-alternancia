@@ -1,16 +1,146 @@
-# React + Vite
+# Repositorio GitHub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+https://github.com/maberbeira/react-alternancia
 
-Currently, two official plugins are available:
+# React Alternancia
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Aplicación web desarrollada con React como parte de un proyecto académico. La aplicación incluye navegación SPA, formulario con validación, galería interactiva, sistema de publicaciones dinámicas y modo oscuro.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tecnologías utilizadas
 
-## Expanding the ESLint configuration
+- React
+- Vite
+- JavaScript (ES6+)
+- CSS (variables CSS)
+- React Router
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Estructura del proyecto
+src/
+├── components/
+│ ├── Navbar.jsx
+│ ├── Gallery.jsx
+│ ├── Blog.jsx
+│ ├── PostCard.jsx
+│ └── ThemeToggle.jsx
+│
+├── pages/
+│ ├── Home.jsx
+│ ├── Services.jsx
+│ └── Contact.jsx
+│
+├── assets/
+│ └── images/
+│
+├── styles/
+│ └── global.css
+│
+├── App.jsx
+└── main.jsx
+
+
+---
+
+## Funcionalidades
+
+### Navegación (React Router)
+
+- Implementación de navegación SPA sin recarga de página.
+- Rutas definidas:
+  - `/` → Inicio
+  - `/services` → Servicios
+  - `/contact` → Contacto
+- Indicación visual de la sección activa.
+
+---
+
+### Formulario con validación
+
+- Campos:
+  - Nombre
+  - Email
+  - Mensaje
+- Validaciones:
+  - Campos obligatorios
+  - Formato de email válido
+  - Longitud mínima del mensaje
+- Gestión de eventos:
+  - onChange
+  - onBlur
+  - onSubmit
+- Visualización de errores en tiempo real.
+
+---
+
+### Galería interactiva
+
+- Visualización de una imagen principal.
+- Lista de miniaturas seleccionables.
+- Cambio dinámico de imagen mediante `useState`.
+- Resaltado de la imagen seleccionada.
+
+---
+
+### Blog dinámico
+
+- Creación de publicaciones.
+- Edición de publicaciones existentes.
+- Eliminación de publicaciones.
+- Posibilidad de destacar publicaciones.
+- Renderizado dinámico mediante estado.
+
+---
+
+### Modo claro / oscuro
+
+- Implementación de cambio de tema mediante variables CSS.
+- Uso de `useEffect` para modificar clases globales.
+- Cambio de apariencia sin recargar la página.
+
+---
+
+## Instalación en local
+
+1. Clonar el repositorio:
+
+git clone https://github.com/tuusuario/react-alternancia
+
+2. Acceder al proyecto:
+
+cd react-alternancia
+
+3. Instalar dependencias:
+
+npm install
+
+4. Ejecutar la aplicación:
+
+npm run dev
+
+5. Generación de build de producción
+
+npm run build
+
+6. Se generará la carpeta:
+
+dist/
+
+# Despliegue
+
+1. Vercel
+
+Despliegue automático conectado al repositorio de GitHub.
+
+URL: https://vercel.com/maberbeiras-projects/react-alternancia-ejercicios
+
+2. InfinityFree
+
+Despliegue manual mediante FTP:
+
+Generar build con npm run build
+Subir el contenido de la carpeta dist a htdocs
+
+URL: https://reactalternancia.infinityfreeapp.com/?i=1
